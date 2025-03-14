@@ -30,7 +30,7 @@ export default function Index() {
       <Text style={styles.greeting}>{greeting}! 👋</Text>
       <SafeAreaView style={styles.container}>
         <View style={styles.inputBox}/>
-      //</SafeAreaView>
+      </SafeAreaView>
       
     </SafeAreaView>
   );
@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   inputBox: {
-    marginTop: 50,
-    marginLeft: 80,
+    marginTop: 120,
+    marginHorizontal: 20,
     width: 308,
     height: 160,
-    borderRadius: 5,
+    borderRadius: 10,
     backgroundColor: "#D9D9D9",
     shadowColor: "#00000",
     shadowOffset:{
