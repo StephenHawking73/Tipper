@@ -1,9 +1,12 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, {SliderProps} from '@react-native-community/slider';
 import React, { Component, useEffect, useState } from "react";
 
+const { height, width } = Dimensions.get("window");
+
 export default function Index() {
+  
 
   //Greeting
   const [greeting, setGreeting] = useState('Hallo');
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   inputBox: {
-    marginTop: 120,
+    marginTop: height * 0.1,
     marginHorizontal: 20,
     width: 308,
     height: 160,
