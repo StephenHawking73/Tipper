@@ -9,6 +9,7 @@ export default function Index() {
 
   //Greeting
   const [greeting, setGreeting] = useState('Hallo');
+  const [inputValue, setInputValue] = useState("");
   useEffect(() => {
     const getCurrentGreeting = () => {
       const hour = new Date().getHours();
@@ -36,7 +37,9 @@ export default function Index() {
         <View style={styles.inputBox}>
           <Text style={styles.inputHeading}>Gesamtbetrag 💵</Text>
           <View style={styles.textInputLine}>
-            <TextInput style={styles.input} placeholder="[Rechnungsbetrag]" maxLength={15}></TextInput>
+            <TextInput style={styles.input} placeholder="[Rechnungsbetrag]" maxLength={15} value={inputValue} onChangeText={setInputValue}></TextInput>
+            <Text style={styles.euro}>{inputValue === "" ? "" : "€"}</Text>
+            <Image source={images.Wallet} style={styles.wallet}/>
           </View>
         </View>
       </SafeAreaView>
@@ -133,9 +136,39 @@ const styles = StyleSheet.create({
     },
     textShadowRadius: 4,
   },
+  euro: {
+    textAlign: "right",
+    marginHorizontal: "23%",
+    marginTop: "-10%",
+    fontSize: 25,
+    fontFamily: "MadimiOne-Regular",
+    textShadowColor: '#9B9B9B', 
+    textShadowOffset:{
+      height:3, 
+      width: 0
+    },
+    textShadowRadius: 4,
+  },
   creditCard: {
     width: 30,
     height: 20,
     resizeMode: "cover",
-  }
+  },
+  wallet: {
+    width: 25,
+    height: 25,
+    position: "absolute",
+    tintColor: "black",
+    shadowColor: "#000000",
+    shadowOffset:{
+        height:1, 
+        width: 0
+    }, 
+    shadowOpacity: 0.29,
+    shadowRadius: 4,
+    elevation: 5, 
+    marginHorizontal: "90%",
+    marginVertical: "-11%",
+    resizeMode: "cover",
+  },
 })
