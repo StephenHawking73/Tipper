@@ -33,11 +33,7 @@ export default function Index() {
       <SafeAreaView style={styles.container}>
         <View style={styles.inputBox}>
           <Text style={styles.inputHeading}>Gesamtbetrag</Text>
-<<<<<<< HEAD
-          <View style={styles.textInputLine}/>
-=======
           <View style={styles.textInputLine}></View>
->>>>>>> 7139c60354298d4eaa1d8a3b1dae182f81b13a66
         </View>
       </SafeAreaView>
       
@@ -87,10 +83,7 @@ const styles = StyleSheet.create({
     elevation: 5, 
   },
   inputHeading: {
-<<<<<<< HEAD
     marginTop: "5%",
-=======
->>>>>>> 7139c60354298d4eaa1d8a3b1dae182f81b13a66
     textAlign: "center",
     fontSize: 30,
     fontFamily: "MadimiOne-Regular",
@@ -102,13 +95,9 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   textInputLine: {
-<<<<<<< HEAD
     marginHorizontal: "10%",
     marginTop: "23%",
-=======
     marginVertical: "10%",
-    marginHorizontal: "10%",
->>>>>>> 7139c60354298d4eaa1d8a3b1dae182f81b13a66
     width: "80%",
     height: 2,
     backgroundColor: "#000000",
