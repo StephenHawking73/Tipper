@@ -1,9 +1,7 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, {SliderProps} from '@react-native-community/slider';
 import React, { Component, useEffect, useState } from "react";
-
-import images from "@/constants/images";
 
 export default function Index() {
 
@@ -32,8 +30,10 @@ export default function Index() {
       <Text style={styles.greeting}>{greeting}! 👋</Text>
       <SafeAreaView style={styles.container}>
         <View style={styles.inputBox}>
-          <Text style={styles.inputHeading}>Gesamtbetrag</Text>
-          <View style={styles.textInputLine}></View>
+          <Text style={styles.inputHeading}>Gesamtbetrag 💵</Text>
+          <View style={styles.textInputLine}>
+            <TextInput style={styles.input} placeholder="[bill amount]" maxLength={15}></TextInput>
+          </View>
         </View>
       </SafeAreaView>
       
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
   inputBox: {
     marginTop: "25%",
     marginHorizontal: "10%",
-    width: 308,
-    height: 160,
+    width: "75%",
+    height: "160%",
     borderRadius: 10,
     backgroundColor: "#D9D9D9",
     shadowColor: "#000000",
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
     elevation: 5, 
   },
   inputHeading: {
-    marginTop: "5%",
     textAlign: "center",
+    marginTop: "2%",
     fontSize: 30,
     fontFamily: "MadimiOne-Regular",
     textShadowColor: '#9B9B9B', 
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   textInputLine: {
     marginHorizontal: "10%",
     marginTop: "23%",
-    marginVertical: "10%",
+    marginVertical: "-13%",
     width: "80%",
     height: 2,
     backgroundColor: "#000000",
@@ -109,5 +109,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4,
     elevation: 5, 
+  },
+  input: {
+    textAlign: "center",
+    marginTop: "-13%",
+    fontSize: 25,
+    fontFamily: "MadimiOne-Regular",
+    fontStyle: "italic",
+    textShadowColor: '#9B9B9B', 
+    textShadowOffset:{
+      height:3, 
+      width: 0
+    },
+    textShadowRadius: 4,
   }
 })
