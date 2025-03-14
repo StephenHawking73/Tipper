@@ -3,6 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, {SliderProps} from '@react-native-community/slider';
 import React, { Component, useEffect, useState } from "react";
 
+import images from "@/constants/images";
+
 export default function Index() {
 
   //Greeting
@@ -30,6 +32,10 @@ export default function Index() {
       <Text style={styles.greeting}>{greeting}! 👋</Text>
       <SafeAreaView style={styles.container}>
         <View style={styles.inputBox}/>
+        {/* Credit-Card */}
+        <View>
+
+        </View>
       </SafeAreaView>
       
     </SafeAreaView>
@@ -64,8 +70,8 @@ const styles = StyleSheet.create({
   inputBox: {
     marginTop: "25%",
     marginHorizontal: "10%",
-    width: "75%",
-    height: "160%",
+    width: 308,
+    height: 160,
     borderRadius: 10,
     backgroundColor: "#D9D9D9",
     shadowColor: "#00000",
