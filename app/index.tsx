@@ -29,7 +29,10 @@ export default function Index() {
       <Text style={styles.title}>Tipper</Text>
       <Text style={styles.greeting}>{greeting}! 👋</Text>
       <SafeAreaView style={styles.container}>
-        <View style={styles.inputBox}/>
+        <View style={styles.inputBox}>
+          <Text style={styles.inputHeading}>Gesamtbetrag</Text>
+          <View style={styles.textInputLine}></View>
+        </View>
       </SafeAreaView>
       
     </SafeAreaView>
@@ -38,7 +41,7 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,  // Ensure SafeAreaView takes up space
+    flex: 0.5,  // Ensure SafeAreaView takes up space
     alignItems: 'center', // Center content
     justifyContent: 'center', // Center content
     display: 'flex', // Ensure it's visible on Web
@@ -68,7 +71,33 @@ const styles = StyleSheet.create({
     height: "160%",
     borderRadius: 10,
     backgroundColor: "#D9D9D9",
-    shadowColor: "#00000",
+    shadowColor: "#000000",
+    shadowOffset:{
+        height:5, 
+        width: 0
+    }, 
+    shadowOpacity: 0.29,
+    shadowRadius: 4,
+    elevation: 5, 
+  },
+  inputHeading: {
+    textAlign: "center",
+    fontSize: 30,
+    fontFamily: "MadimiOne-Regular",
+    textShadowColor: '#9B9B9B', 
+    textShadowOffset:{
+      height:5, 
+      width: 0
+    },
+    textShadowRadius: 4,
+  },
+  textInputLine: {
+    marginVertical: "10%",
+    marginHorizontal: "10%",
+    width: "80%",
+    height: 2,
+    backgroundColor: "#000000",
+    shadowColor: "#000000",
     shadowOffset:{
         height:5, 
         width: 0
