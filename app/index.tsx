@@ -1,9 +1,11 @@
 import { Text, View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, {SliderProps} from '@react-native-community/slider';
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 export default function Index() {
+
+  //Greeting
   const [greeting, setGreeting] = useState('Hallo');
   useEffect(() => {
     const getCurrentGreeting = () => {
@@ -17,20 +19,30 @@ export default function Index() {
         return 'Guten Abend';
       }
     }
-    
     setGreeting(getCurrentGreeting());
   }, [])
 
+  //final return
   return (
-    <SafeAreaView>
+    <SafeAreaView >
       {/* Header */}
       <Text style={styles.title}>Tipper</Text>
       <Text style={styles.greeting}>{greeting}! 👋</Text>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.inputBox}/>
+      //</SafeAreaView>
+      
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,  // Ensure SafeAreaView takes up space
+    alignItems: 'center', // Center content
+    justifyContent: 'center', // Center content
+    display: 'flex', // Ensure it's visible on Web
+  },
   title: {
     marginTop: 30,
     marginLeft: 45,
@@ -49,4 +61,20 @@ const styles = StyleSheet.create({
     fontFamily: "MadimiOne-Regular",
     fontSize: 20,
   },
+  inputBox: {
+    marginTop: 50,
+    marginLeft: 80,
+    width: 308,
+    height: 160,
+    borderRadius: 5,
+    backgroundColor: "#D9D9D9",
+    shadowColor: "#00000",
+    shadowOffset:{
+        height:5, 
+        width: 0
+    }, 
+    shadowOpacity: 0.29,
+    shadowRadius: 4,
+    elevation: 5, 
+  }
 })
