@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, {SliderProps} from '@react-native-community/slider';
 import React, { Component, useEffect, useState } from "react";
@@ -26,17 +26,25 @@ export default function Index() {
 
   //final return
   return (
-    <SafeAreaView >
+    <SafeAreaView>
       {/* Header */}
       <Text style={styles.title}>Tipper</Text>
       <Text style={styles.greeting}>{greeting}! 👋</Text>
+
+      {/* Input */}
       <SafeAreaView style={styles.container}>
         <View style={styles.inputBox}>
           <Text style={styles.inputHeading}>Gesamtbetrag</Text>
           <View style={styles.textInputLine}></View>
         </View>
       </SafeAreaView>
-      
+
+      {/* Slider & Output */}
+      <SafeAreaView>
+        <Image source={images.Credit_Card} style={styles.creditCard}/>
+      </SafeAreaView>
+
+
     </SafeAreaView>
   );
 }
@@ -109,5 +117,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4,
     elevation: 5, 
+  },
+  creditCard: {
+    width: 30,
+    height: 20,
+    resizeMode: "cover",
   }
 })
