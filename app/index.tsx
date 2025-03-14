@@ -36,7 +36,7 @@ export default function Index() {
         <View style={styles.inputBox}>
           <Text style={styles.inputHeading}>Gesamtbetrag 💵</Text>
           <View style={styles.textInputLine}>
-            <TextInput style={styles.input} placeholder="[bill amount]" maxLength={15}></TextInput>
+            <TextInput style={styles.input} placeholder="[Rechnungsbetrag]" maxLength={15}></TextInput>
           </View>
         </View>
       </SafeAreaView>
