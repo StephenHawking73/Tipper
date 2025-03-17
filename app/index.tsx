@@ -42,9 +42,7 @@ export default function Index() {
       </SafeAreaView>
 
       {/* Slider & Output */}
-      <SafeAreaView>
-        <Image source={images.Credit_Card} style={styles.creditCard}/>
-      </SafeAreaView>
+
 
 
     </SafeAreaView>
@@ -134,8 +132,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   creditCard: {
-    width: 30,
-    height: 20,
-    resizeMode: "cover",
+    height: 10,
+  
   }
 })
