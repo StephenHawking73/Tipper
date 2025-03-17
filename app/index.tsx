@@ -33,14 +33,11 @@ export default function Index() {
         <Text style={styles.greeting}>{greeting}! 👋</Text>
 
         {/* Input */}
-        <SafeAreaView style={styles.container}>
-          <View style={styles.inputBox}>
-            <Text style={styles.inputHeading}>Gesamtbetrag 💵</Text>
-            <View style={styles.textInputLine}>
-              <TextInput style={styles.input} placeholder="[Rechnungsbetrag]" maxLength={15}></TextInput>
-            </View>
-          </View>
-        </SafeAreaView>
+        <View style={styles.inputBox}>
+          <Text style={styles.inputHeading}>Gesamtbetrag 💵</Text>
+          <TextInput style={styles.input} placeholder="[Rechnungsbetrag]" maxLength={15}></TextInput>
+          <View style={styles.textInputLine}/>
+        </View>
       </ScrollView>
 
       {/* Slider & Output */}
@@ -77,10 +74,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   inputBox: {
-    marginTop: "25%",
-    marginHorizontal: "10%",
-    width: "75%",
-    height: "160%",
+    marginHorizontal: 45,
+    marginTop: 50,
+    height: 180,
+    width: "77%",
     borderRadius: 10,
     backgroundColor: "#D9D9D9",
     shadowColor: "#000000",
@@ -94,7 +91,7 @@ const styles = StyleSheet.create({
   },
   inputHeading: {
     textAlign: "center",
-    marginTop: "2%",
+    marginTop: 20,
     fontSize: 30,
     fontFamily: "MadimiOne-Regular",
     textShadowColor: '#9B9B9B', 
@@ -106,8 +103,7 @@ const styles = StyleSheet.create({
   },
   textInputLine: {
     marginHorizontal: "10%",
-    marginTop: "23%",
-    marginVertical: "-13%",
+    marginTop: 10,
     width: "80%",
     height: 2,
     backgroundColor: "#000000",
@@ -121,8 +117,8 @@ const styles = StyleSheet.create({
     elevation: 5, 
   },
   input: {
+    marginTop: 50,
     textAlign: "center",
-    marginTop: "-13%",
     fontSize: 25,
     fontFamily: "MadimiOne-Regular",
     fontStyle: "italic",
