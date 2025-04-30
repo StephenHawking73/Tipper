@@ -35,7 +35,7 @@ export default function Index() {
         {/* Input */}
         <View style={styles.inputBox}>
           <Text style={styles.inputHeading}>Gesamtbetrag 💵</Text>
-          <TextInput style={styles.input} placeholder="[Rechnungsbetrag]" maxLength={15}></TextInput>
+          <TextInput style={styles.input} placeholder="[Rechnungsbetrag]" maxLength={15} keyboardType="numeric"></TextInput>
           <View style={styles.textInputLine}/>
         </View>
       </ScrollView>
