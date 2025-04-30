@@ -7,7 +7,9 @@ const Tips = () => {
   return (
     <SafeAreaView>
       <Text style={styles.title}>Deine letzen Tips</Text>
-      <View />
+      <View style={styles.table}>
+
+      </View>
     </SafeAreaView>
   )
 }
@@ -18,6 +20,9 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     fontSize: 40,
     fontFamily: "MadimiOne-Regular",
+  },
+  table: {
+    
   },
 })
 
