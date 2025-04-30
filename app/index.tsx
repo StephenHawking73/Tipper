@@ -42,8 +42,6 @@ export default function Index() {
 
       {/* Slider & Output */}
 
-
-
     </SafeAreaView>
   );
 }

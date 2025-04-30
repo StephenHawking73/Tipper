@@ -1,14 +1,19 @@
-import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
+import { SafeAreaView, View, StyleSheet, Text, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 
 //import {tips} from "./index.tsx"
 
 const Tips = () => {
+
   return (
     <SafeAreaView>
       <Text style={styles.title}>Deine letzen Tips</Text>
-      <View style={styles.table}>
+      <View style={styles.line}/>
 
+      {/* Table */}
+      <View>
+        <ScrollView>
+        </ScrollView>
       </View>
     </SafeAreaView>
   )
@@ -21,8 +26,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontFamily: "MadimiOne-Regular",
   },
-  table: {
-    
+  line : {
+    marginTop: 30,
+    marginHorizontal: 30,
+    width: 400,
+    height: 2,
+    backgroundColor: "black",
+
   },
 })
 
