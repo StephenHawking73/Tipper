@@ -5,6 +5,7 @@ import {
   TextInput,
   Image,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, { SliderProps } from "@react-native-community/slider";
@@ -12,6 +13,7 @@ import Checkbox from 'expo-checkbox';
 import React, { Component, useEffect, useState } from "react";
 
 import images from "@/constants/images";
+import { Button } from "antd";
 
 const borderColor = "gold";
 
@@ -42,7 +44,7 @@ export default function Index() {
   
   const input = Number(inputValue);
   const tip = (input * sliderValue / 100) || 0;
-  const roundedTotal = (Math.round(input + tip)>input) ? Math.round(input + tip) : Math.round(input + tip + 0.44);
+  const roundedTotal = (Math.round(input + tip)>input) ? Math.round(input + tip) : Math.round(input + tip + 0.45);
   const roundedTip = roundedTotal - input; // difference is the rounded tip
   const totalMoney = round ? roundedTotal.toFixed(2) : (input + tip).toFixed(2);
   const roundedTipPercentage = (input != 0) ? ((roundedTip / input)*100).toFixed(2) : sliderValue 
@@ -110,6 +112,11 @@ export default function Index() {
             <Text style={styles.smallText}>Runden</Text>
           </View>
         </View>
+
+        {/*Button*/}
+        <View>
+          <Pressable style={styles.TipButton}>Tip!</Pressable>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -169,8 +176,8 @@ const styles = StyleSheet.create({
     color: "#888",
   },
   checkbox: {
-    width: 40,
-    height: 40
+    width: 100,
+    height: 100
   },
   
   smallText: {
@@ -190,6 +197,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 3,
     
+  },
+  TipButton: {
+    backgroundColor: "gold",
+    padding: 20,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    marginHorizontal: "10%",
+    fontSize: 30,
+    fontFamily: "MadimiOne-Regular",
+    bottom: 20,
   },
   
 });
