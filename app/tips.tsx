@@ -37,7 +37,7 @@ const Tips = () => {
 
 const styles = StyleSheet.create({
   title: {
-    marginTop: 30,
+    marginTop: 10,
     fontSize: 64,
     fontFamily: "MadimiOne-Regular",
     textShadowColor: "#9B9B9B", //use Hex-Code instead
