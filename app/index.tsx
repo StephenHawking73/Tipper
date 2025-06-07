@@ -42,7 +42,7 @@ export default function Index() {
   
   const input = Number(inputValue);
   const tip = (input * sliderValue / 100) || 0;
-  const roundedTotal = (Math.round(input + tip)>input) ? Math.round(input + tip) : Math.round(input + tip + 0.4); // round the total amount
+  const roundedTotal = (Math.round(input + tip)>input) ? Math.round(input + tip) : Math.round(input + tip + 0.44);
   const roundedTip = roundedTotal - input; // difference is the rounded tip
   const totalMoney = round ? roundedTotal.toFixed(2) : (input + tip).toFixed(2);
   const roundedTipPercentage = (input != 0) ? ((roundedTip / input)*100).toFixed(2) : sliderValue 
@@ -100,7 +100,7 @@ export default function Index() {
 
 
         {/* Checkboxes */}
-        <View style={[styles.container, {paddingTop: 30, flexDirection: "row"}]}>
+        <View style={[styles.container, {paddingTop: 10, flexDirection: "row"}]}>
           <View style={styles.checkboxContainer}>
             <Checkbox style={[styles.checkbox]}
                     value={round}
@@ -109,12 +109,7 @@ export default function Index() {
             />
             <Text style={styles.smallText}>Runden</Text>
           </View>
-          
-          
-          
-          
         </View>
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -150,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
-    marginTop: 50,
+    marginTop: 30,
     width: "80%",
     height: 80,
   },
@@ -174,8 +169,8 @@ const styles = StyleSheet.create({
     color: "#888",
   },
   checkbox: {
-    width: 120,
-    height: 120
+    width: 100,
+    height: 100
   },
   
   smallText: {
