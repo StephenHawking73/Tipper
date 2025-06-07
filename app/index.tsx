@@ -39,18 +39,18 @@ export default function Index() {
   const [totalRoundedTip, setTotalRoundedTip] = useState("0.00");
   const [totalRoundedMoney, setTotalRoundedMoney] = useState("0.00");
   const [round, setDoRound] = useState(false);
-  const [roundUp, setDoRoundUp] = useState(false);
   
   const input = Number(inputValue);
   const tip = (input * sliderValue / 100) || 0;
-  const roundedTip = Math.round(input * sliderValue  / 100) || 0;
+  const roundedTotal = (Math.round(input + tip)>input) ? Math.round(input + tip) : Math.round(input + tip + 0.4); // round the total amount
+  const roundedTip = roundedTotal - input; // difference is the rounded tip
+  const totalMoney = round ? roundedTotal.toFixed(2) : (input + tip).toFixed(2);
   const roundedTipPercentage = (input != 0) ? ((roundedTip / input)*100).toFixed(2) : sliderValue 
-  const totalMoney = round ? (input + roundedTip).toFixed(2) : (input + tip).toFixed(2)
 
   useEffect(() => {
     setTotalTip(tip.toFixed(2));
-    setTotalRoundedTip(roundedTip.toFixed(2))
-    setTotalRoundedMoney((input + roundedTip).toFixed(2));
+    setTotalRoundedTip(roundedTip.toFixed(2));
+    setTotalRoundedMoney(roundedTotal.toFixed(2));
   }, [inputValue, sliderValue]);
 
   //final return
