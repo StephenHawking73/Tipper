@@ -174,8 +174,8 @@ const styles = StyleSheet.create({
     color: "#888",
   },
   checkbox: {
-    width: 120,
-    height: 120
+    width: 40,
+    height: 40
   },
   
   smallText: {
