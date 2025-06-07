@@ -2,8 +2,13 @@
 
 # dependencies
 node_modules/
+<<<<<<< HEAD
 package.json
 package-lock.json
+=======
+package-lock.json
+package.json
+>>>>>>> c5d50fb507663bd71768f9bf081efeb5d6fe1d1e
 
 # Expo
 .expo/
