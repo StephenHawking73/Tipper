@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 
 type TipEntry = {
-  amount: string;
+  tip: string;
+  total: string;
   date: string;
   description: string;
 };
@@ -16,9 +17,10 @@ const TipHistoryContext = createContext<TipHistoryContextType | undefined>(undef
 export const TipHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tipHistory, setTipHistory] = useState<TipEntry[]>([]);
 
-  const addTip = (amount: string, description: string) => {
+  const addTip = (tip: string, total: string, description: string) => {
     const newTip: TipEntry = {
-      amount,
+      tip,
+      total,
       date: new Date().toISOString(),
       description,
     };

@@ -125,7 +125,7 @@ export default function Index() {
             styles.tipButton,
             pressed && { opacity: 0.5, shadowOpacity: 0.8 }
             ]}
-            onPress={() => addTip(round ? Number(totalRoundedMoney).toFixed(2) : Number(totalMoney).toFixed(2), note)}
+            onPress={() => addTip(round ? Number(totalRoundedTip).toFixed(2) : Number(totalTip).toFixed(2), round ? Number(totalRoundedMoney).toFixed(2) : Number(totalMoney).toFixed(2), note)}
           >
           <Text style={styles.smallText}>Tip!</Text>
           </Pressable>
@@ -137,7 +137,7 @@ export default function Index() {
             style={styles.betragInput}
             placeholder="Note"
             keyboardType="default"
-            maxLength={20}
+            maxLength={16}
             value={note}
             onChangeText={(text)=>setNote(text)}
           />

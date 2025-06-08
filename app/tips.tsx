@@ -23,23 +23,25 @@ const Tips = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      {/*Heading*/}
+      <View style={styles.container}>
+        <Text style={styles.title}>Tipper</Text>
+        <Text style={styles.smallText}>{greeting}! 👋</Text>
+      </View>
+
+      {/*List*/}
       <FlatList
         data={tipHistory}
         keyExtractor={(_, index) => index.toString()}
-        ListHeaderComponent={
-          <View style={styles.container}>
-            <Text style={styles.title}>Tipper</Text>
-            <Text style={styles.smallText}>{greeting}! 👋</Text>
-          </View>
-        }
         renderItem={({ item }) => (
           <View style={styles.border}>
-            <Text>💵 Tip: ${item.amount}</Text>
-            <Text>📅 Date: {new Date(item.date).toLocaleString("de-DE").replace(",","")}</Text>
-            <Text>📝 Note: { (item.description != "") ? item.description : "/"}</Text>
+            <Text>💵 Tip: €{item.tip} (€{item.total})</Text>
+            <Text>📅 Zeit: {new Date(item.date).toLocaleString("de-DE").replace(",","")}</Text>
+            <Text>📝 Beschreibung: { (item.description !== "") ? item.description : "/"}</Text>
           </View>
         )}
       />
+      {/*Delete Button*/}
     </SafeAreaView>
   )
 }
@@ -76,9 +78,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
     borderWidth: 1,
-    alignSelf: "center", // Center and shrink to content
-    marginVertical: 10,  // Optional: space between items
-    backgroundColor: "#fff", // Optional: for better visibility
+    alignSelf: "center",
+    marginVertical: 10,
+    backgroundColor: "#fff",
+    maxWidth: "90%", // Add this line
   },
 })
 
