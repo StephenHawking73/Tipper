@@ -5,6 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Divider } from "antd";
 
 import { useFonts } from 'expo-font';
+import { TipHistoryProvider } from "./TipHistoryContext";
 
 
 export default function RootLayout() {
@@ -24,6 +25,7 @@ export default function RootLayout() {
 
 
   return(
+    <TipHistoryProvider>
       <Tabs 
         screenOptions={{headerShown: false}}
         
@@ -49,5 +51,6 @@ export default function RootLayout() {
           }}
         />
       </Tabs>
+    </TipHistoryProvider>
   );
 }

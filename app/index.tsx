@@ -6,14 +6,13 @@ import {
   Image,
   ScrollView,
   Pressable,
+  Animated,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, { SliderProps } from "@react-native-community/slider";
 import Checkbox from 'expo-checkbox';
 import React, { Component, useEffect, useState } from "react";
-
-import images from "@/constants/images";
-import { Button } from "antd";
+import { useTipHistory } from "./TipHistoryContext";
 
 const borderColor = "gold";
 
@@ -35,12 +34,14 @@ export default function Index() {
     setGreeting(getCurrentGreeting());
   }, []);
 
+  
   const [sliderValue, setSliderValue] = useState(5);
   const [inputValue, setInputValue] = useState("");
   const [totalTip, setTotalTip] = useState("0.00");
   const [totalRoundedTip, setTotalRoundedTip] = useState("0.00");
   const [totalRoundedMoney, setTotalRoundedMoney] = useState("0.00");
   const [round, setDoRound] = useState(false);
+  const [note, setNote] = useState("");
   
   const input = Number(inputValue);
   const tip = (input * sliderValue / 100) || 0;
@@ -49,11 +50,15 @@ export default function Index() {
   const totalMoney = round ? roundedTotal.toFixed(2) : (input + tip).toFixed(2);
   const roundedTipPercentage = (input != 0) ? ((roundedTip / input)*100).toFixed(2) : sliderValue 
 
+  const { addTip } = useTipHistory();
+
   useEffect(() => {
     setTotalTip(tip.toFixed(2));
     setTotalRoundedTip(roundedTip.toFixed(2));
     setTotalRoundedMoney(roundedTotal.toFixed(2));
   }, [inputValue, sliderValue]);
+  
+  
 
   //final return
   return (
@@ -80,11 +85,11 @@ export default function Index() {
         </View>
 
         {/* Slider */}
-        <View style={styles.container}> 
+        <View style={[styles.container, {marginBottom: 20}]}> 
           <Slider
-            style={{ width: "80%", height: 40 }}
+            style={{ width: "80%", height: 50}}
             minimumValue={0}
-            maximumValue={15}
+            maximumValue={10}
             onValueChange={setSliderValue}
             step={1}
             value={sliderValue}
@@ -115,12 +120,33 @@ export default function Index() {
 
         {/*Button*/}
         <View>
-          <Pressable style={styles.TipButton}>Tip!</Pressable>
+          <Pressable
+            style={({ pressed }: { pressed: boolean }) => [
+            styles.tipButton,
+            pressed && { opacity: 0.5, shadowOpacity: 0.8 }
+            ]}
+            onPress={() => addTip(round ? Number(totalRoundedMoney).toFixed(2) : Number(totalMoney).toFixed(2), note)}
+          >
+          <Text style={styles.smallText}>Tip!</Text>
+          </Pressable>
+        </View>
+
+        {/*DescriptionInput*/}
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.betragInput}
+            placeholder="Note"
+            keyboardType="default"
+            maxLength={20}
+            value={note}
+            onChangeText={(text)=>setNote(text)}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
+
 
 
 const styles = StyleSheet.create({
@@ -153,6 +179,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "relative",
     marginTop: 30,
+    marginBottom : 20,
     width: "80%",
     height: 80,
   },
@@ -195,10 +222,9 @@ const styles = StyleSheet.create({
   border: {
     paddingHorizontal: 20,
     borderRadius: 10,
-    borderWidth: 3,
-    
+    borderWidth: 3,  
   },
-  TipButton: {
+  tipButton: {
     backgroundColor: "gold",
     padding: 20,
     borderRadius: 20,

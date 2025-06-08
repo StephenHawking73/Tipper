@@ -1,10 +1,10 @@
-import { SafeAreaView, View, StyleSheet, Text, ScrollView } from 'react-native'
+import { SafeAreaView, View, StyleSheet, Text, FlatList } from 'react-native'
 import React, { Component, useEffect, useState } from "react";
+import { useTipHistory } from "./TipHistoryContext";
 
-
-//import {tips} from "./index.tsx"
 
 const Tips = () => {
+  const { tipHistory } = useTipHistory();
   const [greeting, setGreeting] = useState("Hallo");
     useEffect(() => {
       const getCurrentGreeting = () => {
@@ -23,14 +23,23 @@ const Tips = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-          <ScrollView style={{ flexGrow: 1 }}>
-    
-            {/* Heading */}
-            <View style={styles.container}>
-              <Text style={styles.title}>Tipper</Text>
-              <Text style={styles.smallText}>{greeting}! 👋</Text>
-            </View>
-          </ScrollView>
+      <FlatList
+        data={tipHistory}
+        keyExtractor={(_, index) => index.toString()}
+        ListHeaderComponent={
+          <View style={styles.container}>
+            <Text style={styles.title}>Tipper</Text>
+            <Text style={styles.smallText}>{greeting}! 👋</Text>
+          </View>
+        }
+        renderItem={({ item }) => (
+          <View style={styles.border}>
+            <Text>💵 Tip: ${item.amount}</Text>
+            <Text>📅 Date: {new Date(item.date).toLocaleString("de-DE").replace(",","")}</Text>
+            <Text>📝 Note: { (item.description != "") ? item.description : "/"}</Text>
+          </View>
+        )}
+      />
     </SafeAreaView>
   )
 }
@@ -51,11 +60,25 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     alignItems: "center",
     justifyContent: "center",
-    display: "flex", // Ensure it's visible on Web
+    display: "flex", 
   },
   smallText: {
     fontFamily: "MadimiOne-Regular",
     fontSize: 20,
+  },
+  normalText: {
+    alignSelf: "flex-start",
+    paddingLeft: 10,
+    fontFamily: "MadimiOne-Regular",
+    fontSize: 30,
+  },
+  border: {
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    alignSelf: "center", // Center and shrink to content
+    marginVertical: 10,  // Optional: space between items
+    backgroundColor: "#fff", // Optional: for better visibility
   },
 })
 
