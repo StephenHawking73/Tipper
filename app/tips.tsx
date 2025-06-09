@@ -1,10 +1,10 @@
-import { SafeAreaView, View, StyleSheet, Text, FlatList } from 'react-native'
+import { SafeAreaView, View, StyleSheet, Text, FlatList, Pressable } from 'react-native'
 import React, { Component, useEffect, useState } from "react";
 import { useTipHistory } from "./TipHistoryContext";
 
 
 const Tips = () => {
-  const { tipHistory } = useTipHistory();
+  const { tipHistory, removeTip } = useTipHistory();
   const [greeting, setGreeting] = useState("Hallo");
     useEffect(() => {
       const getCurrentGreeting = () => {
@@ -38,10 +38,23 @@ const Tips = () => {
             <Text>💵 Tip: €{item.tip} (€{item.total})</Text>
             <Text>📅 Zeit: {new Date(item.date).toLocaleString("de-DE").replace(",","")}</Text>
             <Text>📝 Beschreibung: { (item.description !== "") ? item.description : "/"}</Text>
+            {/*Delete Button*/}
+            <View>
+              <Pressable
+                style={({ pressed }: { pressed: boolean }) => [
+                styles.deleteButton,
+                pressed && { opacity: 0.5, shadowOpacity: 0.8 }
+                ]}
+                onPress={() => removeTip(item)}
+                >
+                <Text style={styles.deleteText}>Delete</Text>
+              </Pressable>
+      </View>
           </View>
         )}
       />
-      {/*Delete Button*/}
+
+      
     </SafeAreaView>
   )
 }
@@ -83,6 +96,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     maxWidth: "90%", // Add this line
   },
+  deleteButton: {
+    marginTop: 5,
+    marginLeft: 5,
+    marginRight: 5,
+    marginBottom: 5,
+    flex: 0,
+    width: "50%",
+    backgroundColor: "red",
+    borderRadius: 7,
+  },
+  deleteText: {
+    alignSelf: "center",
+    textAlignVertical: "center",
+    fontFamily: "MadimiOne-Regular",
+    fontSize: 20,
+  }
 })
 
 export default Tips
