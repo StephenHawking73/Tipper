@@ -134,10 +134,10 @@ export default function Index() {
         {/*DescriptionInput*/}
         <View style={styles.inputContainer}>
           <TextInput
-            style={styles.betragInput}
+            style={styles.descriptionInput}
             placeholder="Note"
             keyboardType="default"
-            maxLength={16}
+            maxLength={35}
             value={note}
             onChangeText={(text)=>setNote(text)}
           />
@@ -192,6 +192,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "MadimiOne-Regular",
     paddingLeft: 32, // space for the currency symbol
+    marginBottom: 20,
+  },
+  descriptionInput: {
+    height: 70,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 10,
+    width: "100%",
+    fontSize: 30,
+    fontFamily: "MadimiOne-Regular",
+    paddingLeft: 10, // space for the currency symbol
     marginBottom: 20,
   },
   currency: {

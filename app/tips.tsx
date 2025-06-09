@@ -35,11 +35,30 @@ const Tips = () => {
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ item }) => (
           <View style={styles.border}>
-            <Text>💵 Tip: €{item.tip} (€{item.total})</Text>
-            <Text>📅 Zeit: {new Date(item.date).toLocaleString("de-DE").replace(",","")}</Text>
-            <Text>📝 Beschreibung: { (item.description !== "") ? item.description : "/"}</Text>
+            <Text>💶  €{item.tip} (€{item.total})</Text>
+            <Text
+              style={{
+                flexShrink: 1,
+                flexWrap: "wrap",
+                width: "100%",
+                textAlign: "left",
+              }}
+            >
+              🗓️  {new Date(item.date).toLocaleDateString("de-DE")} (
+              {new Date(item.date).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })})
+            </Text>
+            <Text
+              style={{
+                flexShrink: 1,
+                flexWrap: "wrap",
+                width: "100%",
+                textAlign: "left",
+              }}
+            >
+              📝  {item.description !== "" ? item.description : "/"}
+            </Text>
             {/*Delete Button*/}
-            <View>
+            <View style={{alignSelf: "center",width: 130}}>
               <Pressable
                 style={({ pressed }: { pressed: boolean }) => [
                 styles.deleteButton,
@@ -49,7 +68,7 @@ const Tips = () => {
                 >
                 <Text style={styles.deleteText}>Delete</Text>
               </Pressable>
-      </View>
+          </View>
           </View>
         )}
       />
@@ -94,7 +113,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 10,
     backgroundColor: "#fff",
-    maxWidth: "90%", // Add this line
+    width: "70%",
+    maxWidth: "95%",     // <--- Nur das hier lassen
   },
   deleteButton: {
     marginTop: 5,
@@ -102,7 +122,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginBottom: 5,
     flex: 0,
-    width: "50%",
+    width: "80%",
     backgroundColor: "red",
     borderRadius: 7,
   },
