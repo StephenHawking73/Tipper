@@ -7,12 +7,15 @@ import {
   ScrollView,
   Pressable,
   Animated,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, { SliderProps } from "@react-native-community/slider";
 import Checkbox from 'expo-checkbox';
 import React, { Component, useEffect, useState } from "react";
 import { useTipHistory } from "./TipHistoryContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const borderColor = "gold";
 
@@ -33,7 +36,7 @@ export default function Index() {
     };
     setGreeting(getCurrentGreeting());
   }, []);
-
+  
   
   const [sliderValue, setSliderValue] = useState(5);
   const [inputValue, setInputValue] = useState("");

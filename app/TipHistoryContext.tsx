@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { Alert } from "react-native";
 
 type TipEntry = {
   tip: string;
@@ -18,6 +20,32 @@ const TipHistoryContext = createContext<TipHistoryContextType | undefined>(undef
 export const TipHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tipHistory, setTipHistory] = useState<TipEntry[]>([]);
 
+  const _storeData = async (data) => {
+    try {
+      await AsyncStorage.setItem('tipHistory', data)
+    } catch (err){
+      console.log(err);
+      Alert.alert("An error occured", err);
+    }
+  };
+
+  const _getData = async () => {
+    try {
+      const data = await AsyncStorage.getItem('tipHistory');
+      if (data !== null) {
+        console.log(data)
+        setTipHistory([data]);
+      } 
+    } catch (err) {
+      console.log(err);
+      Alert.alert("An error occured", err);
+    }
+  }
+
+  useEffect(() => {
+    _getData()
+  }, [])
+
   const addTip = (tip: string, total: string, description: string) => {
     const newTip: TipEntry = {
       tip,
@@ -26,6 +54,7 @@ export const TipHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       description,
     };
     setTipHistory((prev) => [newTip, ...prev]);
+    _storeData(tipHistory?.toString());
   };
 
   // Remove a tip by matching all fields (tip, total, date, description)
@@ -41,6 +70,7 @@ export const TipHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
           )
       )
     );
+    _storeData(tipHistory?.toString());
   };
 
   return (
