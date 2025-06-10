@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Slider, { SliderProps } from "@react-native-community/slider";
 import Checkbox from 'expo-checkbox';
 import React, { Component, useEffect, useState } from "react";
-import { useTipHistory } from "./TipHistoryContext";
+import { useTipHistory } from "../context/TipHistoryContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 

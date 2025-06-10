@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Divider } from "antd";
 
 import { useFonts } from 'expo-font';
-import { TipHistoryProvider } from "./TipHistoryContext";
+import { TipHistoryProvider } from "../context/TipHistoryContext";
 
 
 export default function RootLayout() {

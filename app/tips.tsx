@@ -1,6 +1,6 @@
 import { SafeAreaView, View, StyleSheet, Text, FlatList, Pressable } from 'react-native'
 import React, { Component, useEffect, useState } from "react";
-import { useTipHistory } from "./TipHistoryContext";
+import { useTipHistory } from "../context/TipHistoryContext";
 
 
 const Tips = () => {
