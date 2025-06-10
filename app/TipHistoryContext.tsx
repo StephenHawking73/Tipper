@@ -20,12 +20,12 @@ const TipHistoryContext = createContext<TipHistoryContextType | undefined>(undef
 export const TipHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tipHistory, setTipHistory] = useState<TipEntry[]>([]);
 
-  const _storeData = async (data) => {
+  const _storeData = async (data: TipEntry[]) => {
     try {
-      await AsyncStorage.setItem('tipHistory', data)
-    } catch (err){
+      await AsyncStorage.setItem('tipHistory', JSON.stringify(data));
+    } catch (err) {
       console.log(err);
-      Alert.alert("An error occured", err);
+      Alert.alert("An error occured", String(err));
     }
   };
 
@@ -33,18 +33,17 @@ export const TipHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     try {
       const data = await AsyncStorage.getItem('tipHistory');
       if (data !== null) {
-        console.log(data)
-        setTipHistory([data]);
-      } 
+        setTipHistory(JSON.parse(data));
+      }
     } catch (err) {
       console.log(err);
-      Alert.alert("An error occured", err);
+      Alert.alert("An error occured", String(err));
     }
-  }
+  };
 
   useEffect(() => {
-    _getData()
-  }, [])
+    _getData();
+  }, []);
 
   const addTip = (tip: string, total: string, description: string) => {
     const newTip: TipEntry = {
@@ -53,24 +52,28 @@ export const TipHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       date: new Date().toISOString(),
       description,
     };
-    setTipHistory((prev) => [newTip, ...prev]);
-    _storeData(tipHistory?.toString());
+    setTipHistory(prev => {
+      const updated = [newTip, ...prev];
+      _storeData(updated);
+      return updated;
+    });
   };
 
   // Remove a tip by matching all fields (tip, total, date, description)
   const removeTip = (tipToRemove: TipEntry) => {
-    setTipHistory((prev) =>
-      prev.filter(
-        (tip) =>
+    setTipHistory(prev => {
+      const updated = prev.filter(
+        tip =>
           !(
             tip.tip === tipToRemove.tip &&
             tip.total === tipToRemove.total &&
             tip.date === tipToRemove.date &&
             tip.description === tipToRemove.description
           )
-      )
-    );
-    _storeData(tipHistory?.toString());
+      );
+      _storeData(updated);
+      return updated;
+    });
   };
 
   return (
